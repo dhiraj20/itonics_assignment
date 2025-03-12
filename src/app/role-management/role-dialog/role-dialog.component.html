@@ -2,7 +2,7 @@
   <label class="m20 label header">Create Role</label>
   <mat-form-field class="width100 m40">
     <mat-label>Role Name</mat-label>
-    <input matInput placeholder="Type your email" formControlName="roleName" />
+    <input matInput placeholder="Enter role name" formControlName="roleName" />
     <mat-error *ngIf="roleForm.controls['roleName'].hasError('required')">
       Role name is required.
     </mat-error>
@@ -12,7 +12,7 @@
   </mat-form-field>
   <mat-form-field class="width100 m20">
     <mat-label>Permissions</mat-label>
-    <mat-select formControlName="permissions">
+    <mat-select formControlName="permissions" multiple>
       @for (permission of permissions; track permission) {
       <mat-option [value]="permission.value">{{
         permission.viewValue
@@ -24,7 +24,9 @@
     </mat-error>
   </mat-form-field>
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
-    <button mat-flat-button class="m20">Cancel</button>
-    <button mat-flat-button class="m20">Create Role</button>
+    <button mat-flat-button class="m20" (click)="closeDialog()">Cancel</button>
+    <button mat-flat-button class="m20" (click)="createRole()">
+      Create Role
+    </button>
   </div>
 </form>

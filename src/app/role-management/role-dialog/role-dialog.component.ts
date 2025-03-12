@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from 'ng-flex-layout';
@@ -28,13 +29,29 @@ import { FlexLayoutModule } from 'ng-flex-layout';
     CommonModule,
   ],
 })
-export class RoleDialogComponent {
+export class RoleDialogComponent implements OnInit {
   roleForm: FormGroup;
+  readonly dialogRef = inject(MatDialogRef<RoleDialogComponent>);
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
     this.roleForm = this.formBuilder.group({
       roleName: ['', [Validators.required, Validators.minLength(3)]],
       permissions: [[], Validators.required],
+    });
+  }
+
+  ngOnInit() {
+    console.log(this.data);
+    this.loadRoleData();
+  }
+
+  loadRoleData(): void {
+    this.roleForm.setValue({
+      roleName: this.data.roleName,
+      permissions: this.data.permissions,
     });
   }
 
@@ -44,4 +61,11 @@ export class RoleDialogComponent {
     { value: 'delete', viewValue: 'Delete' },
     { value: 'view_users', viewValue: 'View Users' },
   ];
+
+  createRole() {
+    console.log(this.roleForm.value);
+  }
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

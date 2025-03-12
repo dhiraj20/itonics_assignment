@@ -13,5 +13,7 @@ export class LayoutComponent {
   links = [
     { id: 1, path: '/role/view', name: 'View' },
     { id: 2, path: '/role/create', name: 'Create' },
+    { id: 1, path: '/user/view', name: 'View' },
+    { id: 2, path: '/user/create', name: 'Create' },
   ];
 }

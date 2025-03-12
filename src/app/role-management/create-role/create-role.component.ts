@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { RoleDialogComponent } from '../role-dialog/role-dialog.component';
+import { ListRoleComponent } from '../list-role/list-role.component';
 
 @Component({
   selector: 'app-create-role',
@@ -21,6 +22,7 @@ import { RoleDialogComponent } from '../role-dialog/role-dialog.component';
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    ListRoleComponent,
   ],
   templateUrl: './create-role.component.html',
   styleUrl: './create-role.component.scss',

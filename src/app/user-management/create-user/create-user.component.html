@@ -1,1 +1,48 @@
-<p>create-user works!</p>
+<form class="form p20" [formGroup]="userForm">
+  <label class="m20 label header">Create User</label>
+  <mat-form-field class="width100 m20">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Enter username" formControlName="userName" />
+    <mat-error *ngIf="userForm.controls['userName'].hasError('required')">
+      Username is required.
+    </mat-error>
+    <mat-error *ngIf="userForm.controls['userName'].hasError('minlength')">
+      Role name must be at least 3 characters long.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="width100 m20">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Enter password" formControlName="password" />
+    <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+      Password is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="width100 m20">
+    <mat-label>Fullname</mat-label>
+    <input matInput placeholder="Enter full name" formControlName="fullName" />
+    <mat-error *ngIf="userForm.controls['fullName'].hasError('required')">
+      Fullname is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="width100 m20">
+    <mat-label>Roles</mat-label>
+    <mat-select formControlName="roleName">
+      @for (role of roleList; track role) {
+      <mat-option [value]="role.roleName">{{ role.roleName }}</mat-option>
+      }
+    </mat-select>
+    <mat-error *ngIf="userForm.controls['roleName'].hasError('required')">
+      At least one role is required.
+    </mat-error>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+    <button mat-flat-button class="m20" (click)="closeDialog()">Cancel</button>
+    <button mat-flat-button class="m20" (click)="createUser()">
+      Create Role
+    </button>
+  </div>
+</form>
