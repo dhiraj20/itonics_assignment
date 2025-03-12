@@ -1,0 +1,12 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <ul class="heroes">
+      <li *ngFor="let link of links">
+        <a routerLink="{{ link.path }}">
+          <span class="badge">{{ link.id }}</span> {{ link.name }}
+        </a>
+      </li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content><router-outlet /></mat-drawer-content>
+</mat-drawer-container>

@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.width100 {
+    width: 100%;
+}
+
+.p20 {
+    padding: 20px;
+}
+
+.m10 {
+    margin-top: 10px;
+}
+
+.m20 {
+    margin-top: 20px;
+}
+
+.m40 {
+    margin-top: 40px;
+}
+
+label {
+    display: inline-block;
+}
+
+
+.label {
+    font-size: 25px;
+    font-weight: 700;
+}
