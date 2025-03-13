@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .width100 {
     width: 100%;
@@ -23,6 +30,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top: 40px;
 }
 
+.ml-10 {
+    margin-left: 10px;
+}
+
 label {
     display: inline-block;
 }
@@ -31,4 +42,28 @@ label {
 .label {
     font-size: 25px;
     font-weight: 700;
+}
+
+.header {
+    background: #3275b0;
+    color: #ffffff;
+    padding: 1px 20px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.border-btm {
+    border-bottom: 1px solid #dddddd;
+}
+
+.container {
+    width: 75%;
+    border: 1px solid #1a1b1f;
+    margin: 20px;
+}
+
+.error {
+    color: #b42f45;
 }

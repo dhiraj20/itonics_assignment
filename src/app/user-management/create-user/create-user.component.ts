@@ -13,6 +13,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from 'ng-flex-layout';
+import { HttpService } from '../../http.service';
+import { HttpClientModule } from '@angular/common/http';
+import { v4 as uuidv4 } from 'uuid';
+import { User } from '../../model';
+import { AppService } from '../../app.service';
 @Component({
   selector: 'app-create-user',
   imports: [
@@ -24,7 +29,9 @@ import { FlexLayoutModule } from 'ng-flex-layout';
     ReactiveFormsModule,
     CommonModule,
     FlexLayoutModule,
+    HttpClientModule,
   ],
+  providers: [HttpService],
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.scss',
 })
@@ -48,10 +55,14 @@ export class CreateUserComponent {
       permissions: ['create', 'edit', 'delete', 'view_users'],
     },
   ];
+  actionText: string = '';
+  userAlreadyExists: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private httpService: HttpService,
+    private appService: AppService
   ) {
     this.userForm = this.formBuilder.group({
       userName: [
@@ -64,9 +75,9 @@ export class CreateUserComponent {
     });
   }
 
-  ngOnInit() {
-    console.log(this.data);
+  ngOnInit(): void {
     this.loadRoleData();
+    this.actionText = this.data ? 'Update user' : 'Create user';
   }
 
   loadRoleData(): void {
@@ -80,9 +91,45 @@ export class CreateUserComponent {
     }
   }
 
-  createUser() {}
+  onSumbitHandler(): void {
+    if (this.userForm.valid) {
+      const {
+        password,
+        fullName,
+        roleName,
+        userName = '',
+      } = this.userForm.value;
+      const payload = {
+        id: this.data ? this.data.id : uuidv4(),
+        userName: this.data ? this.data.userName : userName,
+        password,
+        fullName,
+        roleName,
+      };
+      this.data ? this.updateUser(payload) : this.createUser(payload);
+    }
+  }
 
-  closeDialog() {
-    this.dialogRef.close();
+  createUser(payload: User): void {
+    this.httpService.getUsers().subscribe((users) => {
+      const found = users.find((user) => user.userName === payload.userName);
+      if (found) {
+        this.userAlreadyExists = true;
+      } else {
+        this.httpService.createUser(payload).subscribe((value) => {
+          this.closeDialog();
+        });
+      }
+    });
+  }
+
+  updateUser(payload: User): void {
+    this.httpService.updateUser(payload).subscribe((value) => {
+      this.closeDialog(value);
+    });
+  }
+
+  closeDialog(value: string = ''): void {
+    this.dialogRef.close(value);
   }
 }

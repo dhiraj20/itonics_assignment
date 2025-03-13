@@ -1,14 +1,27 @@
-<form class="form">
+<form class="form" [formGroup]="loginForm">
   <label class="m20 label">Login</label>
   <mat-form-field class="width100 m40">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Type your email" value="Sushi" />
+    <input matInput placeholder="Type your email" formControlName="userName" />
+    <mat-error *ngIf="loginForm.controls['userName'].hasError('required')">
+      Role name must be at least 3 characters long.
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="width100 m10">
     <mat-label>Password</mat-label>
-    <input matInput placeholder="Type your password" value="Sushi" />
+    <input
+      matInput
+      placeholder="Type your password"
+      formControlName="password"
+      type="password"
+    />
+    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+      Role name must be at least 3 characters long.
+    </mat-error>
   </mat-form-field>
   <div>
-    <button mat-flat-button class="width100 m20">Login</button>
+    <button mat-flat-button class="width100 m20" (click)="login()">
+      Login
+    </button>
   </div>
 </form>

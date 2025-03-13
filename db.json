@@ -1,0 +1,60 @@
+{
+  "userList": [
+    {
+      "id": "2",
+      "userName": "dhiraj",
+      "password": "password",
+      "fullName": "Dhiraj Majhi",
+      "roleName": "Admin",
+      "isSuperUser": true
+    },
+    {
+      "id": "2",
+      "userName": "dhiraj2",
+      "password": "password",
+      "fullName": "Dhiraj Majhi updated",
+      "roleName": "Trainee"
+    },
+    {
+      "id": "3",
+      "userName": "dhiraj3",
+      "password": "password",
+      "fullName": "Dhiraj Majhi322",
+      "roleName": "Manager"
+    },
+    {
+      "id": "82c119ee-b42b-4624-9b14-5e18c35b32cb",
+      "userName": "ram",
+      "password": "password",
+      "fullName": "Ram Shree",
+      "roleName": "Manager"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "roleName": "Manager",
+      "permissions": [
+        "edit",
+        "delete"
+      ]
+    },
+    {
+      "id": "2",
+      "roleName": "Trainee",
+      "permissions": [
+        "edit",
+        "view_users"
+      ]
+    },
+    {
+      "id": "3",
+      "roleName": "Teacher",
+      "permissions": [
+        "create",
+        "edit",
+        "delete"
+      ]
+    }
+  ]
+}

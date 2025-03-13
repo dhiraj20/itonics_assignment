@@ -1,5 +1,6 @@
 <form class="form p20" [formGroup]="userForm">
-  <label class="m20 label header">Create User</label>
+  <label class="m20 label">{{ actionText }}</label>
+  <div *ngIf="userAlreadyExists" class="m20 error">User already exists.</div>
   <mat-form-field class="width100 m20">
     <mat-label>Username</mat-label>
     <input matInput placeholder="Enter username" formControlName="userName" />
@@ -13,7 +14,12 @@
 
   <mat-form-field class="width100 m20">
     <mat-label>Password</mat-label>
-    <input matInput placeholder="Enter password" formControlName="password" />
+    <input
+      matInput
+      placeholder="Enter password"
+      formControlName="password"
+      type="password"
+    />
     <mat-error *ngIf="userForm.controls['password'].hasError('required')">
       Password is required.
     </mat-error>
@@ -40,9 +46,16 @@
   </mat-form-field>
 
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
-    <button mat-flat-button class="m20" (click)="closeDialog()">Cancel</button>
-    <button mat-flat-button class="m20" (click)="createUser()">
-      Create Role
+    <button mat-raised-button class="m20" (click)="closeDialog()">
+      Cancel
+    </button>
+    <button
+      mat-flat-button
+      class="m20"
+      color="warn"
+      (click)="onSumbitHandler()"
+    >
+      {{ actionText }}
     </button>
   </div>
 </form>
