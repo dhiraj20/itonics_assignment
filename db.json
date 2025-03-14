@@ -1,33 +1,19 @@
 {
   "userList": [
     {
-      "id": "2",
+      "id": "d5ec60d6-ae1e-4359-8fda-6c27cfd80997",
       "userName": "dhiraj",
       "password": "password",
-      "fullName": "Dhiraj Majhi",
-      "roleName": "Admin",
+      "fullName": "Dhiraj",
+      "roleName": "Trainee",
       "isSuperUser": true
     },
     {
-      "id": "2",
-      "userName": "dhiraj2",
+      "id": "068dbdb5-d2b5-4fd7-8bf5-7a16b07188a0",
+      "userName": "Ram",
       "password": "password",
-      "fullName": "Dhiraj Majhi updated",
+      "fullName": "Ram",
       "roleName": "Trainee"
-    },
-    {
-      "id": "3",
-      "userName": "dhiraj3",
-      "password": "password",
-      "fullName": "Dhiraj Majhi322",
-      "roleName": "Manager"
-    },
-    {
-      "id": "82c119ee-b42b-4624-9b14-5e18c35b32cb",
-      "userName": "ram",
-      "password": "password",
-      "fullName": "Ram Shree",
-      "roleName": "Manager"
     }
   ],
   "roles": [

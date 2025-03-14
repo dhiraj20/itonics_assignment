@@ -17,7 +17,6 @@ import { HttpService } from '../../http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { v4 as uuidv4 } from 'uuid';
 import { User } from '../../model';
-import { AppService } from '../../app.service';
 @Component({
   selector: 'app-create-user',
   imports: [
@@ -61,8 +60,7 @@ export class CreateUserComponent {
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private httpService: HttpService,
-    private appService: AppService
+    private httpService: HttpService
   ) {
     this.userForm = this.formBuilder.group({
       userName: [

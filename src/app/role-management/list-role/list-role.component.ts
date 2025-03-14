@@ -9,6 +9,7 @@ import { AppService } from '../../app.service';
 import { Role } from '../../model';
 import { CommonModule } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
+import { FlexLayoutModule } from 'ng-flex-layout';
 
 interface Permissions {
   [key: string]: string;
@@ -22,6 +23,7 @@ interface Permissions {
     HttpClientModule,
     CommonModule,
     MatChipsModule,
+    FlexLayoutModule,
   ],
   providers: [HttpService, AppService],
   templateUrl: './list-role.component.html',

@@ -1,7 +1,7 @@
 export interface User {
   id: string;
   userName: string;
-  password: string;
+  password?: string;
   fullName: string;
   roleName: string;
   permissions?: string[] | undefined;
