@@ -13,7 +13,7 @@ export const routes: Routes = [
   {
     path: 'role',
     component: LayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: 'view', component: ListRoleComponent },
       { path: '**', component: NotfoundComponent },
