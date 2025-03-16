@@ -55,7 +55,6 @@ export class RoleDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRoleData();
-    console.log(this.data);
     this.actionText = this.data ? 'Update user role' : 'Create user role';
   }
 

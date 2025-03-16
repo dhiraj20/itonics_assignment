@@ -1,11 +1,11 @@
 {
   "userList": [
     {
-      "id": "d5ec60d6-ae1e-4359-8fda-6c27cfd80997",
+      "id": "2d71ceb2-1eaf-404e-9bc9-88f56bc7a657",
       "userName": "dhiraj",
       "password": "password",
-      "fullName": "Dhiraj",
-      "roleName": "Trainee",
+      "fullName": "Dhiraj Majhi",
+      "roleName": "Manager",
       "isSuperUser": true
     },
     {
@@ -14,6 +14,13 @@
       "password": "password",
       "fullName": "Ram",
       "roleName": "Trainee"
+    },
+    {
+      "id": "9b4a0125-654a-49b4-8656-1f07283eabdf",
+      "userName": "shyam",
+      "password": "password",
+      "fullName": "Shyam",
+      "roleName": "Teacher"
     }
   ],
   "roles": [
@@ -21,8 +28,10 @@
       "id": "1",
       "roleName": "Manager",
       "permissions": [
+        "create",
         "edit",
-        "delete"
+        "delete",
+        "view_users"
       ]
     },
     {
@@ -37,9 +46,7 @@
       "id": "3",
       "roleName": "Teacher",
       "permissions": [
-        "create",
-        "edit",
-        "delete"
+        "edit"
       ]
     }
   ]

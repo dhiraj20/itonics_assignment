@@ -3,16 +3,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { CreateUserComponent } from '../create-user/create-user.component';
-import { RoleDialogComponent } from '../../role-management/role-dialog/role-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from '../../http.service';
 import { CommonModule } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
 import { AppService } from '../../app.service';
 import { Role, User } from '../../model';
 import { AuthService } from '../../auth.service';
@@ -32,7 +26,6 @@ import { AuthService } from '../../auth.service';
 })
 export class ListUserComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  private _snackBar = inject(MatSnackBar);
   userList: User[] = [];
   displayedColumns: string[] = [
     'id',
@@ -50,7 +43,12 @@ export class ListUserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUsers();
+    const loggedUser: User = this.authService.getLoggedInUser()!;
+    if (this.hasViewUserPermission() || this.isSuperAdmin()) {
+      this.getUsers();
+    } else {
+      this.getUser(loggedUser.id);
+    }
   }
 
   isSuperAdmin(): boolean {
@@ -61,13 +59,28 @@ export class ListUserComponent implements OnInit {
     return this.authService.hasPermission('edit');
   }
 
-  hasDeletePermission() {
-    return this.authService.hasPermission('delete');
+  hasDeletePermission(): boolean {
+    return this.authService.hasPermission('delete')!;
+  }
+
+  hasCreatePermission(): boolean {
+    return this.authService.hasPermission('create')!;
+  }
+
+  hasViewUserPermission(): boolean {
+    return this.authService.hasPermission('view_users')!;
   }
 
   getUsers(): void {
     this.httpService.getUsers().subscribe((data) => {
       this.userList = data;
+      this.dataSource = [...this.userList];
+    });
+  }
+
+  getUser(id: string): void {
+    this.httpService.getUser(id).subscribe((data) => {
+      this.userList = [data];
       this.dataSource = [...this.userList];
     });
   }
